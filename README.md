@@ -44,6 +44,7 @@ It includes `example/` and `test/` directories, and a Travis CI config file, whi
 Let's package the module up again and rename the resulting file so we can compare later.
 
 ```
+$ cd node_modules/minimist/
 $ npm pack
 minimist-1.2.0.tgz
 $ mv minimist-1.2.0.tgz minimist-1.2.0-pre.tgz
