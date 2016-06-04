@@ -47,7 +47,7 @@ if (args.depth != null) {
 
 readInstalled(process.cwd(), readInstalledOptions, function(err, json) {
   if (err) {
-    console.error(chalk.red('Error reading installed packages: ' + err.message))
+    console.error(red('Error reading installed packages: ' + err.message))
     console.error(err.stack)
     process.exit(1)
   }
@@ -60,13 +60,13 @@ function check(json, seen, prefix) {
   }
 
   if (json.files) {
-    console.log(prefix + chalk.green(figures.tick + ' ' + json._id + ' [files]'))
+    console.log(prefix + green(figures.tick + ' ' + json._id + ' [files]'))
   }
   else if (fileExists(path.join(json.path, '.npmignore'))) {
-    console.log(prefix + chalk.green(figures.tick + ' ' + json._id + ' [.npmignore]'))
+    console.log(prefix + green(figures.tick + ' ' + json._id + ' [.npmignore]'))
   }
   else {
-    console.log(prefix + chalk.red(figures.cross + ' ' + json._id))
+    console.log(prefix + red(figures.cross + ' ' + json._id))
   }
 
   seen[json._id] = true
