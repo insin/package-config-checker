@@ -62,7 +62,7 @@ function check(json, seen, prefix) {
   if (json.files) {
     console.log(prefix + green(figures.tick + ' ' + json._id + ' [files]'))
   }
-  else if (fileExists(path.join(json.path, '.npmignore'))) {
+  else if (fileExists(path.join(json.realPath, '.npmignore'))) {
     console.log(prefix + green(figures.tick + ' ' + json._id + ' [.npmignore]'))
   }
   else {
