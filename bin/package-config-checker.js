@@ -19,9 +19,10 @@ var debugLog = debug('package-config-checker:log')
 var args = parseArgs(process.argv.slice(2), {
   alias: {
     d: 'depth',
-    h: 'help'
+    h: 'help',
+    b: 'bad-only'
   },
-  boolean: ['help']
+  boolean: ['help', 'bad-only']
 })
 
 if (args.help) {
@@ -31,6 +32,7 @@ if (args.help) {
     'Options:',
     '  ' + cyan('-h, --help') + '     display this help message',
     '  ' + cyan('-d, --depth') + '    max depth for checking dependency tree ' + cyan('(default: ∞)'),
+    '  ' + cyan('-b, --bad-only') + ' only show bad configured packages',
     '',
     pkg.name + '@' + pkg.version + ' ' + path.join(__dirname, '..')
   ].join('\n'))
@@ -59,14 +61,23 @@ function check(json, seen, prefix) {
     return
   }
 
+  var msg = ''
   if (json.files) {
-    console.log(prefix + chalk.green(figures.tick + ' ' + json._id + ' [files]'))
+    msg = prefix + chalk.green(figures.tick + ' ' + json._id + ' [files]')
   }
   else if (fileExists(path.join(json.path, '.npmignore'))) {
-    console.log(prefix + chalk.green(figures.tick + ' ' + json._id + ' [.npmignore]'))
+    msg = prefix + chalk.green(figures.tick + ' ' + json._id + ' [.npmignore]')
   }
   else {
-    console.log(prefix + chalk.red(figures.cross + ' ' + json._id))
+    msg = prefix + chalk.red(figures.cross + ' ' + json._id)
+  }
+
+  if (args['bad-only']) {
+    if (msg.indexOf(figures.cross) != -1) {
+      console.log(msg);
+    }
+  } else {
+    console.log(msg);
   }
 
   seen[json._id] = true
