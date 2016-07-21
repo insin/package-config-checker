@@ -2,7 +2,7 @@
   "name": "package-config-checker",
   "version": "1.0.0",
   "description": "Checks if your dependencies have package.json files config or an .npmignore for packaging",
-  "main": "index.js",
+  "main": "bin/package-config-checker.js",
   "bin": {
     "package-config-checker": "bin/package-config-checker.js"
   },
