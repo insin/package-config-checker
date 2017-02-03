@@ -83,7 +83,7 @@ function check(json, seen, prefix) {
 
   if (json._npmOperationalInternal) {
     var published = /tgz_(\d+)_/.exec(json._npmOperationalInternal.tmp)[1]
-    publishTimes.push(json._id + ' - ' + new Date(Number(published)))
+    publishTimes.push(published + ' ' + json._id + ' - ' + new Date(Number(published)))
   }
 
   if (args.files) {
