@@ -1,7 +1,7 @@
 {
   "name": "package-config-checker",
-  "version": "1.0.1",
-  "description": "Checks if your dependencies have package.json files config or an .npmignore for packaging",
+  "version": "2.0.0",
+  "description": "Tells you things about your dependencies and transitive dependencies",
   "main": "index.js",
   "bin": {
     "package-config-checker": "bin/package-config-checker.js"
@@ -31,13 +31,13 @@
   "homepage": "https://github.com/insin/package-config-checker#readme",
   "dependencies": {
     "chalk": "1.1.3",
-    "debug": "2.2.0",
-    "figures": "1.7.0",
-    "file-exists": "1.0.0",
+    "debug": "2.6.0",
+    "figures": "2.0.0",
+    "file-exists": "2.0.0",
     "minimist": "1.2.0",
     "read-installed": "4.0.3"
   },
   "devDependencies": {
-    "eslint-config-jonnybuchanan": "4.2.1"
+    "eslint-config-jonnybuchanan": "4.8.0"
   }
 }

@@ -2,9 +2,7 @@
 
 [![npm package][npm-badge]][npm]
 
-Checks if your npm dependencies (and transitive dependencies) have [`files` config in `package.json`](https://docs.npmjs.com/files/package.json#files) or have an [`.npmignore` file](https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package) to avoid including unnecessary files when your module is being packaged for publishing to the npm registry.
-
-Since [npm automatically whitelists certain essential files and blacklists common files which should not be included in module packages](https://docs.npmjs.com/files/package.json#files) (such as source control directories, `npm-debug.log` and `.DS_Store`), submitting a Pull Request to one of your dependencies to add a `files` whitelist to its `package.json` is a quick and easy way to reduce the size of your - and everybody else's - `npm install`.
+Tells you things about your dependencies and transitive dependencies.
 
 ## Usage
 
@@ -12,19 +10,37 @@ Since [npm automatically whitelists certain essential files and blacklists commo
 npm install -g package-config-checker
 ```
 ```
-Usage: package-config-checker
+Usage: package-config-checker <show> [options]
 
 Options:
   -h, --help     display this help message
   -d, --depth    max depth for checking dependency tree (default: ∞)
+
+Show:
+  -f, --files    show presence of files config or .npmignore
+  -r, --recent   show recently updated dependencies
 ```
+
+## Show Flags
+
+You must specify at least one thing to show.
+
+### `-f, --files`
+
+Checks if your npm dependencies (and transitive dependencies) have [`files` config in `package.json`](https://docs.npmjs.com/files/package.json#files) or have an [`.npmignore` file](https://docs.npmjs.com/misc/developers#keeping-files-out-of-your-package) to avoid including unnecessary files when your module is being packaged for publishing to the npm registry.
+
+Since [npm automatically whitelists certain essential files and blacklists common files which should not be included in module packages](https://docs.npmjs.com/files/package.json#files) (such as source control directories, `npm-debug.log` and `.DS_Store`), submitting a Pull Request to one of your dependencies to add a `files` whitelist to its `package.json` is a quick and easy way to reduce the size of your - and everybody else's - `npm install`.
+
+### `-r, --recent`
+
+Shows the 10 most recently published dependencies - use this if you have a hunch you just got broken by a transitive dependency.
 
 ## Example
 
 Checking `package-config-checker`'s own direct dependencies as an example:
 
 ```
-$ package-config-checker -d 0
+$ package-config-checker -f -d 0
 ```
 ![](example-output.png)
 
